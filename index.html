@@ -10,7 +10,7 @@
             background-color: #f4f4f4;
             margin: 0;
             padding: 0;
-            direction: rtl; /* ضبط النصوص والعناصر لتكون من اليمين لليسار */
+            direction: rtl; /* النصوص من اليمين لليسار */
         }
         header {
             background-color: #333;
@@ -19,7 +19,8 @@
             text-align: center;
         }
         .container {
-            width: 80%;
+            width: 90%;
+            max-width: 1200px; /* أقصى عرض */
             margin: auto;
         }
         .product {
@@ -30,7 +31,7 @@
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
             display: flex;
             flex-wrap: wrap;
-            justify-content: space-between; /* يضمن توزيع المحتوى بين الصورة والنص */
+            justify-content: space-between;
         }
         .product img {
             width: 100%;
@@ -40,7 +41,7 @@
         }
         .product-details {
             flex: 1;
-            padding-right: 20px; /* إضافة مسافة من الجهة اليسرى في حال كانت الصورة على اليمين */
+            padding-right: 20px;
         }
         .product h2 {
             font-size: 1.8em;
@@ -77,6 +78,41 @@
             width: 100%;
             bottom: 0;
         }
+
+        /* Media Queries */
+        @media (max-width: 768px) {
+            .product {
+                flex-direction: column; /* ترتيب العناصر عمودياً على الشاشات الصغيرة */
+                align-items: center;
+                text-align: center;
+            }
+            .product img {
+                max-width: 90%; /* جعل الصورة أصغر على الشاشات الصغيرة */
+            }
+            .product-details {
+                padding-right: 0;
+                padding-left: 20px; /* إضافة مسافة من الجهة اليسرى */
+            }
+            .price {
+                font-size: 1.3em;
+            }
+            .call-button {
+                width: 100%; /* جعل زر الاتصال يستحوذ على عرض كامل الشاشة */
+            }
+        }
+
+        /* على الشاشات الصغيرة جداً */
+        @media (max-width: 480px) {
+            .product h2 {
+                font-size: 1.5em; /* تقليص حجم العنوان */
+            }
+            .product p {
+                font-size: 1em; /* تقليص حجم النص */
+            }
+            .price {
+                font-size: 1.2em;
+            }
+        }
     </style>
 </head>
 <body>
@@ -99,8 +135,8 @@
                     <li>دعم الاتصال بالإنترنت عبر Wi-Fi لزيادة وظائف الجهاز.</li>
                     <li>نظام بحث تلقائي عن القنوات.</li>
                 </ul>
-                <p class="price">السعر: 15900.00 ر.س</p>
-                <button class="call-button"><a href="tel:+213552656078" style="color: white; text-decoration: none;">اتصل الآن لطلب جهاز TwinBox</a></button>
+                <p class="price">السعر: 15900.00 د.ج</p>
+                <button class="call-button"><a href="tel:+2130552656078" style="color: white; text-decoration: none;">اتصل الآن لطلب جهاز TwinBox</a></button>
             </div>
         </div>
     </div>
@@ -111,5 +147,8 @@
     </footer>
 </body>
 </html>
+
+
+ 
 
 
