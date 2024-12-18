@@ -33,12 +33,6 @@
             flex-wrap: wrap;
             justify-content: space-between;
         }
-        .product img {
-            width: 100%;
-            max-width: 400px;
-            height: auto;
-            margin-bottom: 10px;
-        }
         .product-details {
             flex: 1;
             padding-right: 20px;
@@ -83,6 +77,49 @@
             position: fixed;
             width: 100%;
             bottom: 0;
+            font-size: 0.8em; /* تقليص حجم الخط */
+        }
+
+        /* سلايدر الصور */
+        .slider-container {
+            width: 100%;
+            overflow: hidden; /* إخفاء الأجزاء التي تتجاوز المساحة */
+            position: relative;
+        }
+        .slider {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+        .slider img {
+            width: 100%;
+            max-width: 300px;
+            height: auto;
+            margin: 0 10px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .slider-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            font-size: 2em;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 50%;
+        }
+        .prev {
+            left: 10px;
+        }
+        .next {
+            right: 10px;
+        }
+
+        /* تقليص حجم الإطار السفلي */
+        footer {
+            font-size: 0.8em; /* تقليص حجم الخط */
         }
 
         /* Media Queries */
@@ -109,22 +146,6 @@
                 padding: 15px 0; /* تحسين حجم الزر على الهواتف */
             }
         }
-
-        /* على الشاشات الصغيرة جداً */
-        @media (max-width: 480px) {
-            .product h2 {
-                font-size: 1.5em; /* تقليص حجم العنوان */
-            }
-            .product p {
-                font-size: 1em; /* تقليص حجم النص */
-            }
-            .price {
-                font-size: 1.2em;
-            }
-            .call-button {
-                font-size: 1.1em; /* تعديل حجم النص داخل الزر */
-            }
-        }
     </style>
 </head>
 <body>
@@ -134,12 +155,11 @@
 
     <div class="container">
         <div class="product">
-            <!-- صورة المنتج على اليمين -->
-            <img src="https://i.imgur.com/8oqJX2N.png" alt="جهاز TwinBox">
             <div class="product-details">
                 <h2>جهاز TwinBox - استقبال متعدد القنوات الفضائية</h2>
                 <p>جهاز TwinBox هو الحل المثالي لتحسين تجربتك في مشاهدة القنوات الفضائية. يتميز الجهاز بتقنيات حديثة لاستقبال القنوات من عدة أقمار صناعية، مما يمنحك مجموعة واسعة من القنوات بجودة عالية. سواء كنت ترغب في متابعة الأخبار أو البرامج الترفيهية أو الرياضة، جهاز TwinBox يوفر لك كل ذلك.</p>
                 <ul>
+                    <li>جهاز واحد يجمع بين المودم، تي في بوكس، والراوتر.</li>
                     <li>دعم استقبال القنوات من عدة أقمار صناعية.</li>
                     <li>دقة عرض عالية تصل إلى 4K.</li>
                     <li>واجهة مستخدم سهلة وبسيطة.</li>
@@ -153,6 +173,20 @@
                     <a href="tel:+213552656078" class="call-button">اتصل الآن لطلب جهاز TwinBox</a>
                 </div>
             </div>
+
+            <!-- سلايدر الصور -->
+            <div class="slider-container">
+                <div class="slider">
+                    <!-- إضافة الصور هنا -->
+                    <img src="https://i.imgur.com/8oqJX2N.png" alt="جهاز TwinBox 1">
+                    <img src="https://i.imgur.com/QZv0Hu3.jpeg" alt="جهاز TwinBox 2">
+                    <img src="https://i.imgur.com/MXyAObb.jpeg" alt="جهاز TwinBox 3">
+                    <img src="https://i.imgur.com/s5VG3KW.jpeg" alt="جهاز TwinBox 4">
+                </div>
+                <!-- أزرار التبديل بين الصور -->
+                <button class="slider-button prev" onclick="moveSlider(-1)">&#10094;</button>
+                <button class="slider-button next" onclick="moveSlider(1)">&#10095;</button>
+            </div>
         </div>
     </div>
 
@@ -160,8 +194,31 @@
         <p>&copy; 2024 موقع بيع المنتجات الإلكترونية</p>
         <p>&copy; 2024 ..Rekab Abdelkader 0552 65 60 78 ..</p>
     </footer>
+
+    <script>
+        let currentIndex = 0;
+
+        function moveSlider(direction) {
+            const slider = document.querySelector('.slider');
+            const images = document.querySelectorAll('.slider img');
+            const totalImages = images.length;
+
+            currentIndex += direction;
+
+            if (currentIndex < 0) {
+                currentIndex = totalImages - 1;
+            } else if (currentIndex >= totalImages) {
+                currentIndex = 0;
+            }
+
+            const offset = -currentIndex * 320; /* تحديد المسافة بين الصور */
+            slider.style.transform = `translateX(${offset}px)`;
+        }
+    </script>
 </body>
 </html>
+
+
 
 
 
